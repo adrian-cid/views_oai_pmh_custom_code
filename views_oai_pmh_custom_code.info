@@ -1,0 +1,12 @@
+name = Views OAI-PMH Custom Code
+description = "Custom code for Erudit."
+
+package = Views
+core = 7.x
+
+dependencies[] = views
+
+; Views Handlers
+files[] = views/views_handler_author_name.inc
+files[] = views/views_handler_author_lastname.inc
+files[] = views/views_handler_author_cleautorite.inc
