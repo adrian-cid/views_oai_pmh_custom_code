@@ -6,9 +6,9 @@
  */
 
 /**
- * Show the author cleautorite.
+ * Show the author id.
  */
-class views_handler_author_cleautorite extends views_handler_field {
+class views_handler_author_id extends views_handler_field {
 
   /**
    * Does the field supports multiple field values.
@@ -241,7 +241,7 @@ class views_handler_author_cleautorite extends views_handler_field {
         // Getting the author node.
         $author_node = node_load($author_id);
 
-        $values[] = $author_node->field_identifiant_autorite[LANGUAGE_NONE][0]['value'];
+        $values[] = $author_node->nid;
       }
       // Getting the names list.
       $values = implode(filter_xss_admin($this->options['separator']), $values);

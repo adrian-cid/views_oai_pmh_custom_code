@@ -10,3 +10,4 @@ dependencies[] = views
 files[] = views/views_handler_author_name.inc
 files[] = views/views_handler_author_lastname.inc
 files[] = views/views_handler_author_cleautorite.inc
+files[] = views/views_handler_author_id.inc
