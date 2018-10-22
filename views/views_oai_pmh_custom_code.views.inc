@@ -44,4 +44,41 @@ function views_oai_pmh_custom_code_views_data_alter(&$data) {
       'handler' => 'views_handler_author_id',
     ),
   );
+
+  $data['node']['redacteurchef_name'] = array(
+    'title' => t('Redacteur chef Name'),
+    'help' => t('The Redacteur Chef Name'),
+    'real field' => 'nid',
+    'field' => array(
+      'handler' => 'views_handler_redacteurchef_name',
+    ),
+  );
+
+  $data['node']['redacteurchef_lastname'] = array(
+    'title' => t('Redacteur chef Lastname'),
+    'help' => t('The Redacteur Chef Lastname'),
+    'real field' => 'nid',
+    'field' => array(
+      'handler' => 'views_handler_redacteurchef_lastname',
+    ),
+  );
+
+  $data['node']['redacteurchef_genre'] = array(
+    'title' => t('Redacteur chef sexe'),
+    'help' => t('The Redacteur Chef Sexe'),
+    'real field' => 'nid',
+    'field' => array(
+      'handler' => 'views_handler_redacteurchef_genre',
+    ),
+  );
+
+  $data['node']['redacteurchef_type'] = array(
+    'title' => t('Redacteur chef type'),
+    'help' => t('The Redacteur Chef Type'),
+    'real field' => 'nid',
+    'field' => array(
+      'handler' => 'views_handler_redacteurchef_type',
+    ),
+  );
+
 }
