@@ -243,9 +243,25 @@ class views_handler_author_name extends views_handler_field {
 
         $values[] = $author_node->field_prenom[LANGUAGE_NONE][0]['value'];
       }
-      // Getting the names list.
-      $values = implode(filter_xss_admin($this->options['separator']), $values);
+
     }
+
+    if ($node->type == 'entretien') {
+      foreach ($node->field_individus[LANGUAGE_NONE] as $individus) {
+        // Getting the field_collection.
+        $field_collection = field_collection_item_load($individus['value'], $reset = FALSE);
+        // Getting the individus id
+        $author_id = $field_collection->field_individu[LANGUAGE_NONE][0]['target_id'];
+        // Getting the individus node.
+        $author_node = node_load($author_id);
+
+        $values[] = $author_node->field_prenom[LANGUAGE_NONE][0]['value'];
+      }
+
+    }
+
+    // Getting the names list.
+    $values = implode(filter_xss_admin($this->options['separator']), $values);
 
     return $values;
   }

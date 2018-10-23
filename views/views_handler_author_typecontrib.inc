@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Definition of views_handler_redacteurchef_lastname.
+ * Definition of views_handler_author_typecontrib.
  */
 
 /**
- * Show the redacteurchef name.
+ * Show the author type contribution.
  */
-class views_handler_redacteurchef_lastname extends views_handler_field {
+class views_handler_author_typecontrib extends views_handler_field {
 
   /**
    * Does the field supports multiple field values.
@@ -231,25 +231,16 @@ class views_handler_redacteurchef_lastname extends views_handler_field {
     $nid = $this->get_value($values, 'nid');
     // Loading the node.
     $node = node_load($nid);
-
     $values = array();
 
-    if (in_array($node->type, array('article_publication', 'entretien'))) {
-      // Getting the dossier id;
-      $dossier_id = $node->field_dossier_referent[LANGUAGE_NONE][0]['target_id'];
-      // Loading the dossier
-      $dossier = node_load($dossier_id);
-
-      foreach ($dossier->field_type_responsable_dossier[LANGUAGE_NONE] as $directeur) {
+    if ($node->type == 'entretien') {
+      foreach ($node->field_individus[LANGUAGE_NONE] as $individus) {
         // Getting the field_collection.
-        $field_collection = field_collection_item_load($directeur['value'], $reset = FALSE);
-        // Gettin the directeur id
-        $directeur_id = $field_collection->field_responsable_dossier[LANGUAGE_NONE][0]['target_id'];
-        // Getting the directeur node.
-        $directeur_node = node_load($directeur_id);
-
-        $values[] = $directeur_node->field_nom[LANGUAGE_NONE][0]['value'];
+        $field_collection = field_collection_item_load($individus['value'], $reset = FALSE);
+        // Getting the typecontrib.
+        $values[] = $field_collection->field_role_liste[LANGUAGE_NONE][0]['value'];
       }
+
       // Getting the names list.
       $values = implode(filter_xss_admin($this->options['separator']), $values);
     }

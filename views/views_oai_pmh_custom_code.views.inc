@@ -81,4 +81,22 @@ function views_oai_pmh_custom_code_views_data_alter(&$data) {
     ),
   );
 
+  $data['node']['author_contribution'] = array(
+    'title' => t('Author Contribution'),
+    'help' => t('The Author Contribution'),
+    'real field' => 'nid',
+    'field' => array(
+      'handler' => 'views_handler_author_contribution',
+    ),
+  );
+
+  $data['node']['author_typecontrib'] = array(
+    'title' => t('Author Type Contribution'),
+    'help' => t('The Author Type Contribution'),
+    'real field' => 'nid',
+    'field' => array(
+      'handler' => 'views_handler_author_typecontrib',
+    ),
+  );
+
 }

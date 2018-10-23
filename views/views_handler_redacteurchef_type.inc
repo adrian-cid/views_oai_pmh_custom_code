@@ -233,7 +233,7 @@ class views_handler_redacteurchef_type extends views_handler_field {
     $node = node_load($nid);
     $values = array();
 
-    if ($node->type == 'article_publication') {
+    if (in_array($node->type, array('article_publication', 'entretien'))) {
       // Getting the dossier id;
       $dossier_id = $node->field_dossier_referent[LANGUAGE_NONE][0]['target_id'];
       // Loading the dossier
@@ -243,7 +243,7 @@ class views_handler_redacteurchef_type extends views_handler_field {
         // Getting the field_collection.
         $field_collection = field_collection_item_load($directeur['value'], $reset = FALSE);
         // Getting the directeur id.
-        $type_id = $field_collection->field_type_direction[LANGUAGE_NONE][0]['tid'];
+        $type_id = $field_collection->field_type_direction[LANGUAGE_NONE][0]['tid']; dpm($field_collection);
         // Getting the type taxonomy.
         $type_direction_taxonomy = taxonomy_term_load($type_id);
         $values[] = $type_direction_taxonomy->name;

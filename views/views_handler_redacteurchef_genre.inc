@@ -235,7 +235,7 @@ class views_handler_redacteurchef_genre extends views_handler_field {
 
     $values = [];
 
-    if ($node->type == 'article_publication') {
+    if (in_array($node->type, array('article_publication', 'entretien'))) {
       // Getting the dossier id;
       $dossier_id = $node->field_dossier_referent[LANGUAGE_NONE][0]['target_id'];
       // Loading the dossier
