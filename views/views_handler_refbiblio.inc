@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Definition of views_handler_redacteurchef_type.
+ * Definition of views_handler_refbiblio.
  */
 
 /**
- * Show the redacteurchef type.
+ * Show the refbiblio.
  */
-class views_handler_redacteurchef_type extends views_handler_field {
+class views_handler_refbiblio extends views_handler_field {
 
   /**
    * Does the field supports multiple field values.
@@ -233,22 +233,12 @@ class views_handler_redacteurchef_type extends views_handler_field {
     $node = node_load($nid);
     $values = array();
 
-    if (in_array($node->type, array('article_publication', 'entretien'))) {
-      // Getting the dossier id;
-      $dossier_id = $node->field_dossier_referent[LANGUAGE_NONE][0]['target_id'];
-      // Loading the dossier
-      $dossier = node_load($dossier_id);
-
-      foreach ($dossier->field_type_responsable_dossier[LANGUAGE_NONE] as $directeur) {
+    if (in_array($node->type, array('entretien', 'article_publication'))) {
+      foreach ($node->field_ref_biblio[LANGUAGE_NONE] as $ref_biblio) {
         // Getting the field_collection.
-        $field_collection = field_collection_item_load($directeur['value'], $reset = FALSE);
-        // Getting the directeur id.
-        $type_id = $field_collection->field_type_direction[LANGUAGE_NONE][0]['tid'];
-        // Getting the type taxonomy.
-        $type_direction_taxonomy = taxonomy_term_load($type_id);
-        $values[] = $type_direction_taxonomy->name;
+        $field_collection = field_collection_item_load($ref_biblio['value'], $reset = FALSE);
+        $values[] = drupal_render($field_collection->view('full'));
       }
-
       // Getting the names list.
       $values = implode(filter_xss_admin($this->options['separator']), $values);
     }

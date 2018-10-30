@@ -99,4 +99,22 @@ function views_oai_pmh_custom_code_views_data_alter(&$data) {
     ),
   );
 
+  $data['node']['author_notebio'] = array(
+    'title' => t('Author Notebio'),
+    'help' => t('The Author Notebio'),
+    'real field' => 'nid',
+    'field' => array(
+      'handler' => 'views_handler_author_notebio',
+    ),
+  );
+
+  $data['node']['refbiblio'] = array(
+    'title' => t('Bibliographic Reference'),
+    'help' => t('The Bibliographic Reference'),
+    'real field' => 'nid',
+    'field' => array(
+      'handler' => 'views_handler_refbiblio',
+    ),
+  );
+
 }

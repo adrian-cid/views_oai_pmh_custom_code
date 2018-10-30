@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Definition of views_handler_redacteurchef_type.
+ * Definition of views_handler_author_notebio.
  */
 
 /**
- * Show the redacteurchef type.
+ * Show the author notebio.
  */
-class views_handler_redacteurchef_type extends views_handler_field {
+class views_handler_author_notebio extends views_handler_field {
 
   /**
    * Does the field supports multiple field values.
@@ -231,27 +231,33 @@ class views_handler_redacteurchef_type extends views_handler_field {
     $nid = $this->get_value($values, 'nid');
     // Loading the node.
     $node = node_load($nid);
+
     $values = array();
 
-    if (in_array($node->type, array('article_publication', 'entretien'))) {
-      // Getting the dossier id;
-      $dossier_id = $node->field_dossier_referent[LANGUAGE_NONE][0]['target_id'];
-      // Loading the dossier
-      $dossier = node_load($dossier_id);
-
-      foreach ($dossier->field_type_responsable_dossier[LANGUAGE_NONE] as $directeur) {
-        // Getting the field_collection.
-        $field_collection = field_collection_item_load($directeur['value'], $reset = FALSE);
-        // Getting the directeur id.
-        $type_id = $field_collection->field_type_direction[LANGUAGE_NONE][0]['tid'];
-        // Getting the type taxonomy.
-        $type_direction_taxonomy = taxonomy_term_load($type_id);
-        $values[] = $type_direction_taxonomy->name;
+    if ($node->type == 'article_publication') {
+      foreach ($node->field_auteur[LANGUAGE_NONE] as $author) {
+        // Getting the author id.
+        $author_id = $author['target_id'];
+        // Getting the author node.
+        $author_node = node_load($author_id);
+        $values[] = $author_node->body[LANGUAGE_NONE][0]['value'];
       }
-
-      // Getting the names list.
-      $values = implode(filter_xss_admin($this->options['separator']), $values);
     }
+
+    if ($node->type == 'entretien') {
+      foreach ($node->field_individus[LANGUAGE_NONE] as $individus) {
+        // Getting the field_collection.
+        $field_collection = field_collection_item_load($individus['value'], $reset = FALSE);
+        // Getting the individus id
+        $author_id = $field_collection->field_individu[LANGUAGE_NONE][0]['target_id'];
+        // Getting the individus node.
+        $author_node = node_load($author_id);
+        $values[] = $author_node->body[LANGUAGE_NONE][0]['value'];
+      }
+    }
+
+    // Getting the names list.
+    $values = implode(filter_xss_admin($this->options['separator']), $values);
 
     return $values;
   }
