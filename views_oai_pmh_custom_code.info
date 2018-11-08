@@ -14,6 +14,7 @@ files[] = views/views_handler_author_lastname.inc
 files[] = views/views_handler_author_name.inc
 files[] = views/views_handler_author_notebio.inc
 files[] = views/views_handler_author_typecontrib.inc
+files[] = views/views_handler_notebio_idrefs.inc
 files[] = views/views_handler_redacteurchef_genre.inc
 files[] = views/views_handler_redacteurchef_lastname.inc
 files[] = views/views_handler_redacteurchef_name.inc

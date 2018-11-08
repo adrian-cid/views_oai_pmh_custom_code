@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Definition of views_handler_author_name.
+ * Definition of views_handler_notebio_idrefs.
  */
 
 /**
- * Show the author id.
+ * Show the notebio idref.
  */
-class views_handler_author_id extends views_handler_field {
+class views_handler_notebio_idrefs extends views_handler_field {
 
   /**
    * Does the field supports multiple field values.
@@ -240,7 +240,7 @@ class views_handler_author_id extends views_handler_field {
         $author_id = $author['target_id'];
         // Getting the author node.
         $author_node = node_load($author_id);
-        $values[] = 'aut' . $author_node->nid;
+        $values[] = 'au' . $author_node->nid;
       }
     }
 
@@ -248,11 +248,11 @@ class views_handler_author_id extends views_handler_field {
       foreach ($node->field_individus[LANGUAGE_NONE] as $individus) {
         // Getting the field_collection.
         $field_collection = field_collection_item_load($individus['value'], $reset = FALSE);
-        // Getting the individus id
+        // Getting the individus id.
         $author_id = $field_collection->field_individu[LANGUAGE_NONE][0]['target_id'];
         // Getting the individus node.
         $author_node = node_load($author_id);
-        $values[] = 'aut' . $author_node->nid;
+        $values[] = 'au' . $author_node->nid;
       }
     }
 

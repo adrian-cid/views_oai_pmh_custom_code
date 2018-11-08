@@ -117,4 +117,13 @@ function views_oai_pmh_custom_code_views_data_alter(&$data) {
     ),
   );
 
+  $data['node']['notebio_idrefs'] = array(
+    'title' => t('Notebio idrefs'),
+    'help' => t('The Notebio idrefs'),
+    'real field' => 'nid',
+    'field' => array(
+      'handler' => 'views_handler_notebio_idrefs',
+    ),
+  );
+
 }
