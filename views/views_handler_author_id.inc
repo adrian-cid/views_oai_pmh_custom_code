@@ -240,7 +240,7 @@ class views_handler_author_id extends views_handler_field {
         $author_id = $author['target_id'];
         // Getting the author node.
         $author_node = node_load($author_id);
-        $values[] = 'au' . $author_node->nid;
+        $values[] = 'aut' . $author_node->nid;
       }
     }
 
@@ -252,7 +252,7 @@ class views_handler_author_id extends views_handler_field {
         $author_id = $field_collection->field_individu[LANGUAGE_NONE][0]['target_id'];
         // Getting the individus node.
         $author_node = node_load($author_id);
-        $values[] = 'au' . $author_node->nid;
+        $values[] = 'aut' . $author_node->nid;
       }
     }
 
